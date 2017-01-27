@@ -4,4 +4,14 @@
   <welcome-file-list>
     <welcome-file>index</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ResultServlet</display-name>
+    <servlet-name>ResultServlet</servlet-name>
+    <servlet-class>de.hskl.servlet.ResultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResultServlet</servlet-name>
+    <url-pattern>/ResultServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
