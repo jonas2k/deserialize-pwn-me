@@ -15,15 +15,16 @@ import org.apache.commons.codec.binary.Base64;
 
 @WebServlet("/result")
 public class ResultServlet extends HttpServlet {
-       
+
 	private static final long serialVersionUID = 4569228537485654918L;
 
-    public ResultServlet() {
-        super();
-    }
+	public ResultServlet() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String input = request.getParameter("input");
 
 		if (input == null || input.length() == 0 || !Base64.isBase64(input.getBytes())) {
@@ -33,26 +34,27 @@ public class ResultServlet extends HttpServlet {
 			byte[] data = Base64.decodeBase64(input);
 			String exception = "";
 			Object object = null;
-			
+
 			try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data))) {
 
 				object = ois.readObject();
 				ois.close();
-				
+
 			} catch (Exception e) {
-				e.printStackTrace();
 				exception = e.getMessage();
+				e.printStackTrace();
 			}
-			
-			request.setAttribute("message", "Success: Input got deserialized!\n Object is: "+object);
+
+			request.setAttribute("message", "Success: Input got deserialized!\n Object is: " + object);
 			request.setAttribute("exception", exception);
 		}
-		
+
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/result.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
