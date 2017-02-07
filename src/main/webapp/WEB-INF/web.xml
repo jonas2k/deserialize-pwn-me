@@ -14,4 +14,14 @@
     <servlet-name>ResultServlet</servlet-name>
     <url-pattern>/ResultServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeserializeServlet</display-name>
+    <servlet-name>DeserializeServlet</servlet-name>
+    <servlet-class>de.hskl.servlet.DeserializeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeserializeServlet</servlet-name>
+    <url-pattern>/DeserializeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
